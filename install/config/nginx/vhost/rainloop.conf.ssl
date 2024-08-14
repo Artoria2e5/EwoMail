@@ -1,6 +1,6 @@
 server {
 	server_name localhost;
-	listen 8000 ssl;
+	listen [::]:8000 ipv6only=off http2 ssl;
 	index index.php index.html index.htm;
 	root /ewomail/www/rainloop;
     
