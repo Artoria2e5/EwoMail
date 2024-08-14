@@ -17,11 +17,14 @@ setenforce 0
 
 centosV=`cat /etc/redhat-release|sed -r 's/.* ([0-9]+)\..*/\1/'`
 
-if [ $centosV != 7 ] ; then 
-    if [ $centosV != 8 ] ; then 
-        echo "unsigned version"
-        exit
-    fi
+if (( centosV < 7 )); then
+    echo "version too old"
+    exit
+fi
+
+if (( centosV > 9)); then
+    echo "version too new"
+    exit
 fi
 
 
@@ -38,8 +41,10 @@ fi
 dovecot_install(){
     if [ $centosV = 7 ] ; then 
         rpm -ivh $cur_dir/soft/dovecot-2.3.15-el7.x86_64.rpm
-    else
+    elif (( centosV == 8)); then
         rpm -ivh $cur_dir/soft/dovecot-2.3.15-el8.x86_64.rpm
+    else
+        yum -y install dovecot
     fi
     
     if ! rpm -qa | grep dovecot > /dev/null;then
@@ -131,9 +136,9 @@ epel_replace()
 {
     sed -e 's!^metalink=!#metalink=!g' \
     -e 's!^#baseurl=!baseurl=!g' \
-    -e 's!//download\.fedoraproject\.org/pub!//mirrors.bfsu.edu.cn!g' \
-    -e 's!http://mirrors\.bfsu!https://mirrors.bfsu!g' \
-    -i /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel-testing.repo
+    -e 's!https\?://download\.fedoraproject\.org/pub/epel!https://mirrors.bfsu.edu.cn/epel!g' \
+    -e 's!https\?://download\.example/pub/epel!https://mirrors.bfsu.edu.cn/epel!g' \
+    -i /etc/yum.repos.d/epel{,-testing}.repo
     yum clean packages
 }
 
