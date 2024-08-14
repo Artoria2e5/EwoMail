@@ -11,17 +11,12 @@ EwoMail是基于Linux的开源邮件服务器软件，集成了众多优秀稳�
 ### 集成组件
 
 
-Postfix：SMTP服务
-
-Dovecot：IMAP/POP3/邮件存储
-
-Amavisd：反垃圾和防病毒
-
-LNAMP：，nginx，mysql，php
-
-EwoMail-Admin：WEB邮箱管理后台
-
-Rainloop：webmail
+* Postfix：SMTP服务
+* Dovecot：IMAP/POP3/邮件存储
+* Amavisd：反垃圾和防病毒
+* LNAMP：Linux，nginx，mysql，php
+* EwoMail-Admin：WEB邮箱管理后台
+* Rainloop：webmail
 
 ### 安装环境
 
@@ -29,13 +24,10 @@ centos 7/8系统，服务器需要干净环境，全新安装的系统。
 
 最低配置要求
 
-CPU：1核
-
-内存：2G
-
-硬盘：40G
-
-带宽：1-3M
+* CPU：1核
+* 内存：2G
+* 硬盘：40G
+* 带宽：1-3M
 
 
 
@@ -53,12 +45,9 @@ sh ./start.sh ewomail.cn
 ```
  **国外网络** 请在安装域名后面加空格加en，例如  sh ./start.sh ewomail.cn en
  
- 安装教程
+安装教程：http://doc.ewomail.com/docs/ewomail/install
 
-http://doc.ewomail.com/docs/ewomail/install
-
-更新教程
-http://doc.ewomail.com/docs/ewomail/update
+更新教程：http://doc.ewomail.com/docs/ewomail/update
 
 ### 邮箱后台
 
