@@ -222,6 +222,11 @@ init(){
     chown -R amavis:amavis /ewomail/dkim
     amavisd genrsa /ewomail/dkim/mail.pem
     chown -R amavis:amavis /ewomail/dkim
+    cat >> /etc/clamd.d/amavisd.conf <<__EOF__
+ConcurrentDatabaseReload no
+HeuristicScanPrecedence yes
+ExitOnOOM yes
+__EOF__
     
     service mysqld start
     
