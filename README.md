@@ -4,6 +4,10 @@
 
 更新组件
 
+rainloop换成snappymail：
+* 更新插件API
+* 将补丁转换为patch形式
+
 ### EwoMail
 
 EwoMail是基于Linux的开源邮件服务器软件，集成了众多优秀稳定的组件，是一个快速部署、简单高效、多语言、安全稳定的邮件解决方案，帮助你提升运维效率，降低 IT 成本，兼容主流的邮件客户端，同时支持电脑和手机邮件客户端。
@@ -16,11 +20,11 @@ EwoMail是基于Linux的开源邮件服务器软件，集成了众多优秀稳�
 * Amavisd：反垃圾和防病毒
 * LNAMP：Linux，nginx，mysql，php
 * EwoMail-Admin：WEB邮箱管理后台
-* Rainloop：webmail
+* Snappymail：webmail，兼容rainloop
 
 ### 安装环境
 
-centos 7/8系统，服务器需要干净环境，全新安装的系统。
+centos 7/8/9系统，服务器需要干净环境，全新安装的系统。
 
 最低配置要求
 
@@ -28,7 +32,6 @@ centos 7/8系统，服务器需要干净环境，全新安装的系统。
 * 内存：2G
 * 硬盘：40G
 * 带宽：1-3M
-
 
 
 **国外网络** 请在安装域名后面加空格加en，例如  sh ./start.sh ewomail.cn en
