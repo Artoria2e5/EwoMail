@@ -6,7 +6,7 @@
 
 rainloop换成snappymail：
 * 更新插件API
-* 将补丁转换为patch形式
+* 将补丁转换为submodule形式
 
 ### EwoMail
 
