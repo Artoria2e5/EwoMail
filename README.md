@@ -4,9 +4,10 @@
 
 更新组件
 
-rainloop换成snappymail：
-* 更新插件API
-* 将补丁转换为submodule形式
+*rainloop换成snappymail：
+** 更新插件API
+** 将补丁转换为submodule形式
+*增加CentOS 9 Stream支持
 
 ### EwoMail
 

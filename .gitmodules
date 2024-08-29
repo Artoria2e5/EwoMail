@@ -1,0 +1,4 @@
+[submodule "snappymail"]
+	path = snappymail
+	url = https://github.com/Artoria2e5/snappymail
+	branch = ewomail
