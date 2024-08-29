@@ -192,7 +192,13 @@ init(){
     
     mkdir -p /ewomail/www/default
     cp -rf $cur_dir/../ewomail-admin /ewomail/www/
-    cp -rf $cur_dir/../rainloop /ewomail/www/
+    cp -rf $cur_dir/../snappymail /ewomail/www/
+    if [[ ! -e /ewomail/www/snappymail/data/_data_/_default_/configs/application.ini ]]; then
+        cp -rf $cur_dir/config/rainloop/data/* /ewomail/www/snappymail/data
+        mv /ewomail/www/snappymail/data/_data_/_default_/domains/{.local,$domain.ini}
+        sed -e "s/@DEFAULT_DOMAIN@/$domain/g" -i /ewomail/www/snappymail/data/_data_/_default_/configs/application.ini
+        ln -sf /ewomail/www/snappymail/plugins/change-password{,-ewomail} /ewomail/www/snappymail/_data_/_default_/plugins
+    fi
     
     cd /ewomail/www
     unzip -o $cur_dir/soft/phpMyAdmin-5.0.2-all-languages.zip
