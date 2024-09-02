@@ -31,7 +31,7 @@ CREATE TABLE `i_admin` (
   `ctime` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`aid`),
   UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员账号';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='管理员账号';
 
 -- ----------------------------
 -- Records of i_admin
@@ -47,7 +47,7 @@ CREATE TABLE `i_admin_group` (
   `title` varchar(30) NOT NULL COMMENT '标题',
   `auth` text,
   PRIMARY KEY (`gid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='管理组';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COMMENT='管理组';
 
 -- ----------------------------
 -- Records of i_admin_group
@@ -60,13 +60,13 @@ INSERT INTO `i_admin_group` VALUES ('8', '客服', 'a:7:{i:101;a:3:{s:4:\"view\"
 DROP TABLE IF EXISTS `i_admin_log`;
 CREATE TABLE `i_admin_log` (
   `log_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL COMMENT '管理员账号',
-  `ip` varchar(255) NOT NULL,
+  `username` varchar(191) NOT NULL COMMENT '管理员账号',
+  `ip` varchar(191) NOT NULL,
   `explain` text COMMENT '说明',
   `ctime` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`log_id`),
   KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=207 DEFAULT CHARSET=utf8 COMMENT='管理员操作日志';
+) ENGINE=MyISAM AUTO_INCREMENT=207 DEFAULT CHARSET=utf8mb4 COMMENT='管理员操作日志';
 
 -- ----------------------------
 -- Records of i_admin_log
@@ -79,8 +79,8 @@ DROP TABLE IF EXISTS `i_admin_menu`;
 CREATE TABLE `i_admin_menu` (
   `menu_id` int(11) NOT NULL,
   `mark` varchar(30) NOT NULL DEFAULT '' COMMENT '备注',
-  `lang` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL DEFAULT '',
+  `lang` varchar(191) NOT NULL,
+  `url` varchar(191) NOT NULL DEFAULT '',
   `top_id` int(11) NOT NULL DEFAULT '0' COMMENT '上级id',
   `edit` int(1) NOT NULL DEFAULT '0' COMMENT '添加和编辑权限',
   `del` int(1) NOT NULL DEFAULT '0' COMMENT '删除权限',
@@ -89,7 +89,7 @@ CREATE TABLE `i_admin_menu` (
   PRIMARY KEY (`menu_id`),
   KEY `top_id` (`top_id`) USING BTREE,
   KEY `edit_id` (`edit_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='后台菜单栏目';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='后台菜单栏目';
 
 -- ----------------------------
 -- Records of i_admin_menu
@@ -117,7 +117,7 @@ CREATE TABLE `i_aliases` (
   `destination` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `source` (`source`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邮箱别名转发';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='邮箱别名转发';
 
 -- ----------------------------
 -- Records of i_aliases
@@ -131,7 +131,7 @@ CREATE TABLE `i_bcc_user` (
   `source` varchar(255) NOT NULL COMMENT '接收邮件的email',
   `to_email` varchar(255) NOT NULL COMMENT '目标用户的邮件',
   KEY `source` (`source`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邮件转发';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='邮件转发';
 
 -- ----------------------------
 -- Records of i_bcc_user
@@ -143,7 +143,7 @@ CREATE TABLE `i_bcc_user` (
 DROP TABLE IF EXISTS `i_domains`;
 CREATE TABLE `i_domains` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(191) NOT NULL,
   `active` int(1) NOT NULL DEFAULT '0',
   `s_num` int(11) NOT NULL DEFAULT '0' COMMENT '邮件每天的发送量，0不受限制',
   `c_num` int(11) NOT NULL DEFAULT '0' COMMENT '邮件每天的接收量，0不受限制',
@@ -154,7 +154,7 @@ CREATE TABLE `i_domains` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`) USING BTREE,
   KEY `active` (`active`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of i_domains
@@ -165,10 +165,10 @@ CREATE TABLE `i_domains` (
 -- ----------------------------
 DROP TABLE IF EXISTS `i_mail_config`;
 CREATE TABLE `i_mail_config` (
-  `name` varchar(255) NOT NULL,
-  `value` varchar(255) DEFAULT NULL,
+  `name` varchar(191) NOT NULL,
+  `value` varchar(191) DEFAULT NULL,
   UNIQUE KEY `key` (`name`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of i_mail_config
@@ -188,7 +188,7 @@ CREATE TABLE `i_quota` (
   `messages` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`email`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of i_quota
@@ -199,10 +199,10 @@ CREATE TABLE `i_quota` (
 -- ----------------------------
 DROP TABLE IF EXISTS `i_system_config`;
 CREATE TABLE `i_system_config` (
-  `name` varchar(255) NOT NULL,
-  `value` varchar(255) DEFAULT NULL,
+  `name` varchar(191) NOT NULL,
+  `value` varchar(191) DEFAULT NULL,
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统配置表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='系统配置表';
 
 -- ----------------------------
 -- Records of i_system_config
@@ -221,9 +221,9 @@ CREATE TABLE `i_users` (
   `domain_id` int(11) NOT NULL,
   `password` varchar(106) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `maildir` varchar(255) NOT NULL,
-  `uname` varchar(255) DEFAULT NULL COMMENT '姓名',
-  `tel` varchar(255) DEFAULT NULL COMMENT '联系电话',
+  `maildir` varchar(191) NOT NULL,
+  `uname` varchar(191) DEFAULT NULL COMMENT '姓名',
+  `tel` varchar(191) DEFAULT NULL COMMENT '联系电话',
   `active` int(1) NOT NULL DEFAULT '1' COMMENT '是否正常：1是，0否',
   `limits` int(1) NOT NULL DEFAULT '1' COMMENT '收发限制',
   `limitg` int(1) NOT NULL DEFAULT '1' COMMENT '容量限制',
@@ -232,7 +232,7 @@ CREATE TABLE `i_users` (
   UNIQUE KEY `email` (`email`) USING BTREE,
   KEY `domain_id` (`domain_id`) USING BTREE,
   KEY `active` (`active`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邮箱用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='邮箱用户表';
 
 -- ----------------------------
 -- Records of i_users

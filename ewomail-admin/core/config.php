@@ -5,7 +5,7 @@ return [
     'dbuser' => 'ewomail',//数据库账号
     'dbpw' => 'ewomail',//数据库密码
     'dbname' => 'ewomail',//数据库名称
-    'dbcharset' => 'utf8',//数据库编码
+    'dbcharset' => 'utf8mb4',//数据库编码
     'dbprefix'=> 'i_',//数据库表的前缀
     'code_key'=>'',//加密钥匙
     'url'=>'',//网站链接，后面不要加/线

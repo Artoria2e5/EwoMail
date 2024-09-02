@@ -36,8 +36,8 @@ class init{
         if ($this->db->connect_error) {
             die('Connect Error('.$this->db->connect_errno.')'.$this->db->connect_error);
         }
-        if (!$this->db->set_charset("utf8")) {
-            die("Error loading character set utf8: ".$this->db->error);
+        if (!$this->db->set_charset("utf8mb4")) {
+            die("Error loading character set utf8mb4: ".$this->db->error);
         }
         
         $this->import_sql();
@@ -291,7 +291,7 @@ dkim_key("'.$this->domain.'", "dkim", "/ewomail/dkim/mail.pem");
             
         }
         
-        $r = $this->db->query("CREATE DATABASE IF NOT EXISTS ".$this->mail_db." DEFAULT CHARSET utf8 COLLATE utf8_general_ci");
+        $r = $this->db->query("CREATE DATABASE IF NOT EXISTS ".$this->mail_db." DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_general_ci");
         if(!$r){
             die('Database creation failed');
         }
