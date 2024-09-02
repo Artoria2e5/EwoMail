@@ -300,11 +300,26 @@ function get_client_ip($type = 0,$adv=true) {
     }elseif (isset($_SERVER['REMOTE_ADDR'])) {
         $ip     =   $_SERVER['REMOTE_ADDR'];
     }
-    // IP地址合法验证
-    $long = sprintf("%u",ip2long($ip));
-    $ip   = $long ? array($ip, $long) : array('0.0.0.0', 0);
-    return $ip[$type];
+    // ::ffff:x.x.x.x -> x.x.x.x
+    if (strpos($ip, ':') !== false && strpos($ip, '.') !== false) {
+        $ip = substr($ip, strrpos($ip, ':') + 1);
+    }
+    $long = inet_pton((string)$ip);
+    $ret = $long ? array(
+        inet_ntop($long), buf2int($long)) : array('0.0.0.0', 0);
+    return $ret[$type];
 }
+
+// 将 ipv4 转换为整数，ipv6 转换为头 64 位
+function buf2int(string $buf): int {
+    $ret = 0;
+    $len = strlen($buf);
+    for ($i = 0; $i < $len && $i < 8; $i++) {
+        $ret = ($ret << 8) | ord($buf[$i]);
+    }
+    return $ret;
+}
+  
 
 
 /**
