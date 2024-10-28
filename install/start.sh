@@ -192,7 +192,8 @@ init(){
     
     mkdir -p /ewomail/www/default
     cp -rf $cur_dir/../ewomail-admin /ewomail/www/
-    cp -rf $cur_dir/../snappymail /ewomail/www/
+    cp -rf $cur_dir/../snappymail /ewomail/www/rainloop
+    ln -s snappymail /ewomail/www/rainloop
     if [[ ! -e /ewomail/www/snappymail/data/_data_/_default_/configs/application.ini ]]; then
         cp -rf $cur_dir/config/rainloop/data/* /ewomail/www/snappymail/data
         mv /ewomail/www/snappymail/data/_data_/_default_/domains/{.local,$domain.ini}
@@ -204,6 +205,11 @@ init(){
     unzip -o $cur_dir/soft/phpMyAdmin-5.0.2-all-languages.zip
     ln -s /ewomail/www/phpMyAdmin-5.0.2-all-languages /ewomail/www/phpMyAdmin
     cd $cur_dir
+
+    pushd /
+    tar xf $cur_dir/soft/php83.tar.gz
+    systemctl enable php-fpm83
+    popd
     
     
     config_file

@@ -7,8 +7,9 @@ EwoMail是基于Linux的开源邮件服务器软件，集成了众多优秀稳�
 * rainloop换成snappymail：
   * 更新插件API
   * 将补丁转换为submodule形式
-  * 未完成：需要PHP7.4，需要更新lnmp包
+  * 临时增加 PHP 8.3，运行两份 PHP-FPM；未来计划将 PHP 8.3 作为主要版本，需要修正验证码崩溃问题
 * 增加CentOS 9 Stream支持
+* 增加 IPv6 支持
 
 ## 集成组件
 
@@ -34,7 +35,7 @@ centos 7/8/9系统，服务器需要干净环境，全新安装的系统。
 
 **国外网络** 请在安装域名后面加空格加en，例如 `sh ./start.sh ewomail.cn en`
 
-## centos7/8
+## centos7/8/9
 
 ```
 yum -y install git
