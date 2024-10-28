@@ -192,7 +192,7 @@ init(){
     
     mkdir -p /ewomail/www/default
     cp -rf $cur_dir/../ewomail-admin /ewomail/www/
-    cp -rf $cur_dir/../snappymail /ewomail/www/rainloop
+    cp -rf $cur_dir/../snappymail /ewomail/www/
     ln -s snappymail /ewomail/www/rainloop
     if [[ ! -e /ewomail/www/snappymail/data/_data_/_default_/configs/application.ini ]]; then
         cp -rf $cur_dir/config/rainloop/data/* /ewomail/www/snappymail/data
@@ -214,6 +214,7 @@ init(){
     
     config_file
     
+    ln -s /ewomail/nginx/logs/ /var/log/nginx
     
     groupadd -g 5000 vmail
     useradd -M -u 5000 -g vmail -s /sbin/nologin vmail
