@@ -45,8 +45,10 @@ git clone https://github.com/Artoria2e5/EwoMail.git
 cd EwoMail
 python ../git-partial-submodule.py clone
 cd install
-#需要输入一个邮箱域名，不需要前缀，列如下面的ewomail.cn
-sh ./start.sh ewomail.cn
+# 需要输入一个邮箱域名，不需要前缀，列如下面的ewomail.cn
+bash ./start.sh ewomail.cn
+# 如果有需要请用cert运行certbot
+bash ./cert.sh
 ```
 
 **国外网络** 请在安装域名后面加空格加en，例如 `sh ./start.sh ewomail.cn en`
