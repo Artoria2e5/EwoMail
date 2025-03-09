@@ -51,6 +51,11 @@ dovecot_install(){
         echo "dovecot Installation failed"
         exit 1
     fi
+
+    if [ -e /usr/lib/systemd/system/dovecot.service ]; then
+        sed -i '/PrivateTmp=true/d' /usr/lib/systemd/system/dovecot.service
+        systemctl daemon-reload
+    fi
 }
 
 
@@ -101,26 +106,26 @@ down_rpm(){
 }
 
 config_file(){
-    
     mv /etc/my.cnf /etc/my.cnf.backup
     ln -s /ewomail/mysql/etc/my.cnf /etc
-    cp -rf $cur_dir/soft/dovecot.service /usr/lib/systemd/system
-    
-    
+    echo "bind-address = 127.0.0.1" >> /etc/my.cnf
+
+    # cp -rf $cur_dir/soft/dovecot.service /usr/lib/systemd/system
+
     cp -rf $cur_dir/config/dovecot /etc
     cp -rf $cur_dir/config/postfix /etc
     
     mkdir -p /etc/ssl/certs
     mkdir -p /etc/ssl/private
-    
+
     cp -rf $cur_dir/config/nginx/* /ewomail/nginx/conf/
     cp -rf $cur_dir/soft/nginx.service /usr/lib/systemd/system
-    
+
     cp -rf $cur_dir/soft/php-fpm.conf /ewomail/php72/etc
     cp -rf $cur_dir/soft/php.ini /ewomail/php72/etc
     cp -rf $cur_dir/soft/php-cli.ini /ewomail/php72/etc
     cp -rf $cur_dir/soft/php-fpm.service /usr/lib/systemd/system
-    
+
     cp -rf $cur_dir/config/fail2ban/jail.local /etc/fail2ban
     cp -rf $cur_dir/config/fail2ban/postfix.ewomail.conf /etc/fail2ban/filter.d
     cp -rf $cur_dir/config/fail2ban/postfix.ewomail.user.conf /etc/fail2ban/filter.d

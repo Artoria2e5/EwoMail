@@ -1,6 +1,6 @@
 # This file is commonly accessed via dict {} section in dovecot.conf
 
-connect = host=127.0.0.1 dbname=ewomail user=ewomail password=123456
+connect = dbname=ewomail user=ewomail password=123456
 
 # CREATE TABLE quota (
 #   username varchar(100) not null,
